@@ -14,7 +14,7 @@ public class MeasurementClient {
 
         // Реєстрація нового сенсора
         Sensor sensor = new Sensor();
-        sensor.setName("testWithJava3");
+        sensor.setName("testWithJava");
         HttpEntity<Sensor> sensorEntity = new HttpEntity<>(sensor, headers);
         Sensor sensorResponse = restTemplate.postForObject("http://localhost:8080/sensor/registration", sensorEntity, Sensor.class);
 
@@ -23,7 +23,7 @@ public class MeasurementClient {
         }
 
         // Надсилання 1000 вимірів
-        for(int i = 0; i < 1000; i++) {
+        for(int i = 0; i < 10; i++) {
             SensorMeasurement measurementsRequest = new SensorMeasurement();
             measurementsRequest.setValue(measurementsRequest.generateRandomTemperature());
             measurementsRequest.setRaining(measurementsRequest.generateRandomRainStatus());

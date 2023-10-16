@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.text.DecimalFormat;
 import java.util.Random;
 
 /**
@@ -18,7 +19,13 @@ public class SensorMeasurement {
     Random random = new Random();
 
     public double generateRandomTemperature() {
-        return random.nextDouble() * 40;
+        double rawValue = random.nextDouble() * 40;
+        // Створити об'єкт DecimalFormat для форматування числа з обмеженням знаків після коми
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        //Використовуємо DecimalFormat для форматування числа
+        String formattedValue = decimalFormat.format(rawValue);
+        //Повертаємо форматоване число у вигляді рядка
+        return Double.parseDouble(formattedValue.replace(',', '.'));
     }
 
     public boolean generateRandomRainStatus() {
